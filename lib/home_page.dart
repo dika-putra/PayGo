@@ -7,10 +7,8 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: Center(child: Text('Home')),
-      ),
+    return const Scaffold(
+      body: Center(child: Text('Initial App')),
     );
   }
 }
