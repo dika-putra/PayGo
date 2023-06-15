@@ -7,8 +7,36 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Initial App')),
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(24),
+          child: Obx(() {
+            final customerInfo = controller.customerInfo.value;
+            final packages =
+                controller.offerings.value?.current?.availablePackages ?? [];
+            return Column(
+              children: [
+                Text(
+                    'Subscription is premium: ${customerInfo?.entitlements.active.containsKey('premium')}'),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    final package = packages[index];
+                    return ListTile(
+                      title: Text(package.identifier),
+                      onTap: () {
+                        controller.purchase(package);
+                      },
+                    );
+                  },
+                  itemCount: packages.length,
+                ),
+              ],
+            );
+          }),
+        ),
+      ),
     );
   }
 }
