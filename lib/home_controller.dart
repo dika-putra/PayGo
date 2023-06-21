@@ -9,6 +9,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    Purchases.setLogLevel(LogLevel.debug);
     fetchInfo();
     fetchOffering();
   }

@@ -19,12 +19,14 @@ class HomePage extends GetView<HomeController> {
               children: [
                 Text(
                     'Subscription is premium: ${customerInfo?.entitlements.active.containsKey('premium')}'),
+                const SizedBox(height: 16),
                 ListView.builder(
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     final package = packages[index];
                     return ListTile(
-                      title: Text(package.identifier),
+                      title: Text('Subscribe ${package.packageType.name}'),
+                      tileColor: Colors.amber,
                       onTap: () {
                         controller.purchase(package);
                       },
