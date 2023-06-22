@@ -13,12 +13,16 @@ class HomePage extends GetView<HomeController> {
           padding: const EdgeInsets.all(24),
           child: Obx(() {
             final customerInfo = controller.customerInfo.value;
+            final subscriptions = customerInfo?.activeSubscriptions;
+            final subscription = (subscriptions?.isNotEmpty ?? false)
+                ? subscriptions?.first
+                : 'Not Available';
             final packages =
                 controller.offerings.value?.current?.availablePackages ?? [];
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                    'Subscription is premium: ${customerInfo?.entitlements.active.containsKey('premium')}'),
+                Text('Subscription Status: $subscription'),
                 const SizedBox(height: 16),
                 ListView.builder(
                   shrinkWrap: true,
