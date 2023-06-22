@@ -25,7 +25,7 @@ class HomePage extends GetView<HomeController> {
                   itemBuilder: (context, index) {
                     final package = packages[index];
                     return ListTile(
-                      title: Text('Subscribe ${package.packageType.name}'),
+                      title: Text(package.identifier),
                       tileColor: Colors.amber,
                       onTap: () {
                         controller.purchase(package);
